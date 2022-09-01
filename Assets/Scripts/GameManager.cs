@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Button btn1;
     public Button btn2;
-
+    public GameObject tmp;
+    private TextMeshProUGUI txt;
 
     [Header("根据格子数动态生成棋盘")]
     public int grid = 3; //棋盘单行格数，可动态生成，效果不太好，白做了。
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        txt = tmp.GetComponent<TextMeshProUGUI>();
 
         scoreToWin = grid;
         //units的作用是作为生成棋子的父结点，目前棋盘的棋子是自动生成的，本来想做成根据grids变量扩展格子的棋盘，不过没时间了。
@@ -159,10 +162,12 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 Debug.Log("PlayerWin");
+                txt.text = "You Win";
                 gameEnd = true;
                 return;
             case -1:
                 Debug.Log("CpuWin");
+                txt.text = "You Lose";
                 gameEnd = true;
                 return;
             default:
@@ -171,6 +176,7 @@ public class GameManager : MonoBehaviour
         if(step == totalGrid)
         {
             Debug.Log("Tie");
+            txt.text = "Tie";
             gameEnd = true;
         }
     }
