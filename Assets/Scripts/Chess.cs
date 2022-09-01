@@ -39,14 +39,11 @@ public class Chess : MonoBehaviour
     {
         imDone = true;
         GameObject go;
+        //OXOXOXOXOXOX
         if (step % 2 == 0)
-        {
             go = Instantiate(chessX, transform.position, transform.rotation, transform);
-        }
         else
-        {
             go = Instantiate(chessO, transform.position, transform.rotation, transform);
-        }
     }
 
 }
